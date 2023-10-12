@@ -1,0 +1,337 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <bits/stdc++.h>
+using namespace std;
+
+class StudentDetails {
+public:
+    string name, FN, MN, contact, Class, section;
+    char gender;
+    int rollno, atnd;
+
+    void get() {
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Enter the Details of the Student :- " << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+        cout << "1. Enter Name of The Student: ";
+        
+        getline(cin ,name);
+
+        cout << "2. Enter Father's Name: ";
+        getline(cin, FN);
+
+        cout << "3. Enter Mother's Name of The Student: ";
+        getline(cin, MN);
+
+        cout << "4. Contact No.: ";
+        cin >> contact;
+
+        cout << "5. Class: ";
+        cin >> Class;
+
+        cout << "6. Section: ";
+        cin >> section;
+
+        cout << "7. Roll no.: ";
+        cin >> rollno;
+
+        cout << "8. Attendance of the student: ";
+        cin >> atnd;
+
+        cout << "9. Gender: ";
+        cin >> gender;
+
+        while(true)
+        {
+            if(gender!='M' && gender!='F' && gender!='O'){
+            	cout<<endl<<endl;
+            	cout<<"------------------!!   Alert  !!------------------------"<<endl;
+                cout<<"Wrong Input Observed !! \nPlease Enter As :- (Male - M , Female - F , Other - O)"<<endl;
+                cout<<"--------------------------------------------------------"<<endl<<endl;
+				cout<<"--> ";
+				cin>>gender;
+				cout<<endl;
+            }
+            else{
+                break;
+            }   
+        } 
+    }
+
+    void showDetails() {
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Details of the Student :- " << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "1. Name of The Student: " << name << endl << endl;
+        cout << "2. Enter Father's Name: " << FN << endl << endl;
+        cout << "3. Enter Mother's Name: " << MN << endl << endl;
+        cout << "4. Contact No.: " << contact << endl << endl;
+        cout << "5. Class: " << Class << endl << endl;
+        cout << "6. Section: " << section << endl << endl;
+        cout << "7. Roll no.: " << rollno << endl << endl;
+        cout << "8. Attendance: " << atnd << '%' << endl << endl;
+        cout << "9. Gender: " << gender << endl << endl;
+    }
+};
+
+class Academics : public StudentDetails {
+public:
+    int maths, physics, chemistry, hindi, english;
+
+    void getMarks() {
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Enter Marks of following Subjects (Out Of 100) :-" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "1. Maths: ";
+        cin >> maths;
+        while(true)
+        {
+            
+            if(maths>100 || maths<0){
+            	cout<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"   !!Wrong Input!!    "<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"->";
+				cin>>maths;
+            }
+            else{
+                break;
+            }
+        }
+        cout << "2. Physics: ";
+        cin >> physics;
+        while(true)
+        {
+                if(physics>100 || physics<0){
+                cout<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"   !!Wrong Input!!    "<<endl;
+                cout<<"-----------------------";
+				cout<<endl;
+				cout<<"->";
+                cin>>physics;
+            }
+            else{
+                break;
+            }
+        }
+
+        cout << "3. Chemistry: ";
+        cin >> chemistry;
+        while(true)
+        {
+            if(chemistry>100 || chemistry<0){
+                cout<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"   !!Wrong Input!!    "<<endl;
+                cout<<"-----------------------";
+				cout<<endl;
+				cout<<"->";
+                cin>>chemistry;
+            }
+            else{
+                break;
+            }
+        }
+        cout << "4. Hindi: ";
+        cin >> hindi;
+        while(true)
+        {
+            if(hindi>100 || hindi<0){
+                cout<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"   !!Wrong Input!!    "<<endl;
+                cout<<"-----------------------";
+				cout<<endl;
+				cout<<"->";
+                cin>>hindi;
+            }
+            else{
+                break;
+            }
+        }
+        cout << "5. English: ";
+        cin >> english;
+        while(true)
+        {
+            if(english>100 || english<0){
+                cout<<endl;
+                cout<<"-----------------------"<<endl;
+				cout<<"   !!Wrong Input!!    "<<endl;
+                cout<<"-----------------------";
+				cout<<endl;
+				cout<<"->";
+                cin>>english;
+            }
+            else{
+                break;
+            }
+        }
+    }
+};
+
+class Calculation : public Academics {
+public:
+    int TotalMarks;
+    float per;
+    string grade;
+
+    void calc(){
+        TotalMarks = maths + physics + chemistry + hindi + english;
+        per = TotalMarks / 5 ;
+
+        if (per > 90)
+            grade = "A+";
+        else if (per < 90 && per >= 80)
+            grade = "A";
+        else if (per < 80 && per >= 70)
+            grade = "B";
+        else if (per < 70 && per >= 60)
+            grade = "C";
+        else if(per<60 && per>=33)
+        	grade = "D";
+        else
+            grade = "F";
+    }
+
+    string complement() {
+        if (grade == "A+") return " - Excellent!!!";
+        else if (grade == "A") return " - Good!!";
+        else if (grade == "B") return " - Need Consistency!!";
+        else if (grade == "C") return " - Need Hard Work!!";
+        else if (grade == "D") return " - Progress is Poor!!";
+		else return " - Fail";
+    }
+
+    void Result() {
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Result : " << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Marks of following Subjects :-" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        cout << "1. Maths: " << maths << endl << endl;
+        cout << "2. Physics: " << physics << endl << endl;
+        cout << "3. Chemistry: " << chemistry << endl << endl;
+        cout << "4. Hindi: " << hindi << endl << endl;
+        cout << "5. English: " << english << endl << endl;
+        cout <<"--------------------------------------------------------------"<<endl;
+        cout << "--> Total Marks: " << TotalMarks <<" / 500"<< endl << endl;
+        cout << "--> Percentage: " << per <<"%"<< endl << endl;
+        cout << "--> Grade is " << grade << complement() << endl;
+        cout <<"--------------------------------------------------------------"<<endl;
+    }
+
+    void ExamEligibility() {
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Eligibility :-" << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        if (atnd >= 75) {
+            cout << "-> Eligible For Exam !!" << endl;
+            cout << "-> As Attendance is Equal to or Above 75% : "<<atnd<<endl;
+        } else {
+        	
+            cout << "       ---------!!WARNING!!-------- " << endl << endl;
+            cout << "-> Not Eligibility For Exam !!" << endl << endl;
+            cout << "-> As Attendance is Below 75% : "<<atnd<<endl;
+        }
+    }
+};
+
+class Operations : public Calculation {
+public:
+    void opr() {
+        
+        while (true) {
+            int n;
+            cout<<endl;
+            cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+            cout << "Choose one number of the following for Displaying the operations :-" << endl;
+            cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+            cout << "1 -> Personal Details : " << endl;
+            cout << "2 -> Result : " << endl;
+            cout << "3 -> Exam Eligibility : " << endl;
+            cout << "0 -> Exit" << endl << endl;
+            cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+            cout << "Enter Your Choice :-"<<endl;
+            cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+            cin >> n;
+            if(n==0){
+                break;
+            }
+            system("cls");
+            switch (n) {
+				case 1:
+                	
+                    showDetails();
+                    continue;
+                case 2:
+                    calc();
+                    Result();
+                    continue;
+                case 3:
+                    ExamEligibility();
+                    continue;
+                default:
+                	cout << "       ---------!!WARNING!!-------- " << endl << endl;
+                    cout << "Enter Suitable Input As Given !!!" << endl;
+                    continue;
+            }
+			
+        }
+    }
+};
+
+int main() {
+    int t;
+    
+    cout << "``````````````````````````````````````````````````````````````````````````````````````" << endl;
+    cout << "                          ~ STUDENT RECORD MANAGEMENT SYSTEM ~                 " << endl;
+    cout << "``````````````````````````````````````````````````````````````````````````````````````" << endl << endl << endl;
+    goto go;
+    go:
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "Create New Student Profile :- " << endl << endl;
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "For Creation :- \n -> Enter No. of Students :  " << endl;
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+    cout<<"-> "; cin >> t;
+ 
+
+    vector<Operations> students(t);
+
+    for (int i = 0; i < t; i++) {
+        cin.ignore();
+        system("cls");
+        students[i].get();
+        students[i].getMarks();
+        
+    }
+
+    while (true) {
+        system("cls");
+        int n;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+        cout << "Enter the Nth NO. of Student to see The Detail : ";
+        cout << "Otherwise Enter - 0" << endl << endl;
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+        cout << "Enter Value: "<<endl;
+		cout<<"--> ";cin >> n;
+        if (n == 0) {
+        	cout<<endl<<endl<<endl;
+        	cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl;
+            cout<<"Thanks For Using Our Plateform.........!!!!"<<endl;
+        	cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<endl<<endl<<endl;
+
+			break;
+        }
+        students[n - 1].opr();
+        
+    }
+
+    return 0;
+}
